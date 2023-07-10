@@ -6,6 +6,7 @@ import ErrorModal from "../UI/ErrorModal";
 const AddUsers = (props) => {
   const inputUserName = useRef();
   const inputUserAge = useRef();
+  const inputUserColleageName=useRef();
 
   const [error, setError] = useState();
 
@@ -13,6 +14,7 @@ const AddUsers = (props) => {
     event.preventDefault();
     const EnteredUserNAme=inputUserName.current.value;
     const EnteresUserAge=inputUserAge.current.value;
+    const EnteredUserColleageName=inputUserColleageName.current.value;
 
     if (EnteredUserNAme.trim().length === 0 || EnteresUserAge.trim().length === 0) {
       setError({
@@ -30,7 +32,10 @@ const AddUsers = (props) => {
     }
     // console.log(enteredUsername, enteredAge);
 
-    props.onAddUser(EnteredUserNAme, EnteresUserAge);
+    props.onAddUser(EnteredUserNAme, EnteresUserAge,EnteredUserColleageName);
+    inputUserName.current.value="";
+    inputUserAge.current.value="";
+    inputUserColleageName.current.value='';
   };
 
   const errorHandler = () => {
@@ -52,6 +57,8 @@ const AddUsers = (props) => {
           <input id="username" type="text" ref={inputUserName} />
           <label htmlFor="Age">Age</label>
           <input id="age" type="number" ref={inputUserAge} />
+          <label htmlFor="Colleage_Name">Colleage_Name</label>
+          <input id="Colleage_Name" type='text' ref={inputUserColleageName}/>
           <Button type="submit">Add Users</Button>
         </form>
       </Card>
